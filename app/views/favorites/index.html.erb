@@ -1,0 +1,88 @@
+<!-- <div class="page-header">
+    <a href="/favorites/new" class="btn btn-lg btn-success">New Favorite</a>
+</div> -->
+
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-6">
+        <h1>Been There List</h1>
+        </div>
+        <div class="col-md-6">
+        <h1> Bucket List</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <iframe
+              width="540"
+              height="400"
+              frameborder="0" style="border:0"
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB0arm7EABZewH34Trj5GZ3aoGxIgAMWIw
+                &q=355 E. Kalamazoo Ave, Kalamazoo, MI" allowfullscreen>
+            </iframe>
+        </div>
+        <div class="col-md-6">
+            <iframe
+              width="540"
+              height="400"
+              frameborder="0" style="border:0"
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB0arm7EABZewH34Trj5GZ3aoGxIgAMWIw
+                &q=901 SW Simpson Ave Bend, OR 97702" allowfullscreen>
+            </iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+          <table class="table table-striped table-hover">
+            <tr>
+              <th>Brewery</th>
+              <th>Address</th>
+              <th>Remove</th>
+            </tr>
+
+            <% @favorites.where(:visited => true).each do |favorite| %>
+            <tr>
+              <td><%= favorite.brewery.name %></td>
+              <td><%= favorite.brewery.address %></td>
+
+              <td>
+                <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger btn-xs" rel="nofollow">Remove</a>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <table class="table table-striped table-hover">
+            <tr>
+              <th>Brewery</th>
+              <th>Address</th>
+              <th>Remove</th>
+            </tr>
+
+            <% @favorites.where(:visited => nil).each do |favorite| %>
+            <tr>
+              <td><%= favorite.brewery.name %></td>
+              <td><%= favorite.brewery.address %></td>
+
+              <td>
+                <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger btn-xs" rel="nofollow">Remove</a>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+    </div>
+    <div class="row"></div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+
+  </div>
+</div>

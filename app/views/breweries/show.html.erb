@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h3><%= @brewery.name %></h3>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <dd><img src="<%= @brewery.image_url %>" width=300</td></dd>
+        </div>
+        <div class="col-md-8">
+          <dt>Brewery Name</dt>
+          <dd><%= @brewery.name %></dd>
+
+          <dt>Address</dt>
+          <dd><%= @brewery.address %></dd>
+
+          <dt>Notes</dt>
+          <dd><%= @brewery.notes %></dd>
+
+          <dt>Pinned by these users</dt>
+          <dd>
+            <ul class="list-group">
+            <% @brewery.users.each do |pin| %>
+            <li class="list-group-item">
+            <%= pin.email %>
+            </li>
+            <%end%>
+          </ul>
+          </dd>
+    </div>
+</div>
+
+
+    <div class="btn-group btn-group-justified">
+      <a href="/breweries" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/breweries/<%= @brewery.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_brewery/<%= @brewery.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

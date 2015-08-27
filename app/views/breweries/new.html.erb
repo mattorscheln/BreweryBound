@@ -1,0 +1,67 @@
+<!-- Validation failure messages -->
+<% if @brewery.errors.any? %>
+  <% @brewery.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Brewery</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_brewery" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Brewery Name
+        </label>
+
+        <input type="text" textarea id="name" name="name" placeholder="Name" class="form-control" rows="3"><%= @brewery.name %></textarea>
+      </div>
+
+      <!-- Label and input for image_url -->
+      <div class="form-group">
+        <label for="image_url" class="control-label">
+          Image url
+        </label>
+
+        <input type="text" id="image_url" name="image_url" placeholder="Image url" class="form-control" value="<%= @brewery.image_url %>">
+      </div>
+
+
+
+      <!-- Label and input for address -->
+      <div class="form-group">
+        <label for="address" class="control-label">
+          Address
+        </label>
+
+        <input type="text" textarea id="address" name="address" placeholder="Address" class="form-control" rows="3"><%= @brewery.address %></textarea>
+      </div>
+
+      <!-- Label and input for notes -->
+      <div class="form-group">
+        <label for="notes" class="control-label">
+          Notes
+        </label>
+
+        <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @brewery.notes %></textarea>
+      </div>
+
+
+      <button class="btn btn-success">
+        Create Brewery
+      </button>
+      or
+      <a href="/breweries">Cancel</a>
+    </form>
+  </div>
+</div>

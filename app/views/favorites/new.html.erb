@@ -1,0 +1,51 @@
+<!-- Validation failure messages -->
+<% if @favorite.errors.any? %>
+  <% @favorite.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Brewery to My List</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_favorite" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for brewery_id -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Select Brewery
+        </label>
+        <%=select_tag(:brewery_id, options_from_collection_for_select(Brewery.all, :id, :name, @favorite.brewery_id), :class => "form-control") %>
+        <value="<%= @favorite.brewery_id %>>
+
+      <!-- Label and input for visited -->
+      <div class="checkbox">
+        <label for="visited">
+          <input type="checkbox" id="visited" name="visited" value="1" <%= "checked" if @favorite.visited %>>
+          Visited
+        </label>
+      </div>
+
+
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+          <input type="hidden" id="user_id" name="user_id" value="<%= current_user.id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Add to My List
+      </button>
+      or
+      <a href="/favorites">Cancel</a>
+    </form>
+  </div>
+</div>
