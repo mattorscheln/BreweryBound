@@ -3,6 +3,16 @@ class FavoritesController < ApplicationController
 
   def index
       @favorites = current_user.favorites
+      @beenthere = @favorites.where(:visited => true)
+      @bucketlist = @favorites.where(:visited => nil)
+      @hash1 = Gmaps4rails.build_markers(@beenthere) do |favorite, marker|
+        marker.lat favorite.brewery.latitude
+        marker.lng favorite.brewery.longitude
+      end
+      @hash2 = Gmaps4rails.build_markers(@bucketlist) do |favorite, marker|
+        marker.lat favorite.brewery.latitude
+        marker.lng favorite.brewery.longitude
+      end
   end
 
   def show
