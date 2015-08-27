@@ -15,11 +15,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-
-          <div style='width: 550px;'>
-            <div id="map" style='width: 550px; height: 400px;'></div>
+          <div style='width: 540px;'>
+            <div id="map" style='width: 540px; height: 400px;'></div>
           </div>
-           <script type="text/javascript">
+            <script type="text/javascript">
              handler = Gmaps.build('Google');
              handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
                markers = handler.addMarkers(<%=raw @hash1.to_json %>);
@@ -27,17 +26,20 @@
                handler.fitMapToBounds();
              });
            </script>
-
-
         </div>
+
         <div class="col-md-6">
-            <iframe
-              width="540"
-              height="400"
-              frameborder="0" style="border:0"
-              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB0arm7EABZewH34Trj5GZ3aoGxIgAMWIw
-                &q=901 SW Simpson Ave Bend, OR 97702" allowfullscreen>
-            </iframe>
+            <div style='width: 540px;'>
+              <div id="map2" style='width: 540px; height: 400px;'></div>
+            </div>
+                <script type="text/javascript">
+                 handler2 = Gmaps.build('Google');
+                 handler2.buildMap({ provider: {}, internal: {id: 'map2'}}, function(){
+                   markers2 = handler2.addMarkers(<%=raw @hash2.to_json %>);
+                   handler2.bounds.extendWith(markers2);
+                   handler2.fitMapToBounds();
+                 });
+               </script>
         </div>
       </div>
 

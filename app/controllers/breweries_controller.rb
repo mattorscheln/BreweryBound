@@ -2,7 +2,10 @@ class BreweriesController < ApplicationController
     before_action :authenticate_user!
 
   def index
+    # all breweries, ordered by favorites for the user
+    # @breweries = Brewery.join(:favorites).order(('favorites.user_id = ?', current_user.id), ('favorites.visited = ?', true))
     @breweries = Brewery.all
+    # @breweries = @breweries.sort {|a,b| a.favorites.where(user_id: current_user.id).where(visited: true) <=> a.favorites.where(user_id: current_user.id).where(visited: false) }
   end
 
   def show
